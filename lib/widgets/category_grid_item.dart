@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meals/models/category.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem(this.text, {super.key});
+  const CategoryGridItem({super.key, required this.category});
 
-  final String text;
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: const TextStyle(color: Colors.white));
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          category.color.withOpacity(0.55),
+          category.color.withOpacity(0.9)
+        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+      ),
+      child: Text(
+        category.title,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+      ),
+    );
   }
 }
