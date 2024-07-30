@@ -27,11 +27,17 @@ class MealDetailsScreen extends ConsumerWidget {
               duration: const Duration(milliseconds: 1000),
               transitionBuilder: (kChild, animation) {
                 return RotationTransition(
-                  turns: animation,
+                  turns: Tween<double>(
+                    begin: 0.8,
+                    end: 1,
+                  ).animate(animation),
                   child: kChild,
                 );
               },
-              child: Icon(isFavorite ? Icons.star : Icons.star_border),
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_border,
+                key: ValueKey(isFavorite),
+              ),
             ),
             onPressed: () {
               // onToggleFavorite(meal);
